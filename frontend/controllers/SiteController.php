@@ -79,6 +79,17 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionProduct()
+    {
+        return $this->render('product');
+    }
+
+
+    /**
      * Logs in a user.
      *
      * @return mixed
