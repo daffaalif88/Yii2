@@ -158,6 +158,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays about page.
+     *
+     * @return mixed
+     */
+    public function actionCoba()
+    {
+        return $this->render('coba');
+    }
+
+    /**
      * Signs user up.
      *
      * @return mixed
