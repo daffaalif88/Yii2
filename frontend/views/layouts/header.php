@@ -16,7 +16,7 @@
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Product', 'url' => ['/site/product']],
+        ['label' => 'Product', 'url' => ['/product/index']],
         ['label' => 'Kategori', 'url' => ['/kategori/index']],
     ];
     if (Yii::$app->user->isGuest) {
