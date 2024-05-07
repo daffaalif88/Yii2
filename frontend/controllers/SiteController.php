@@ -91,15 +91,22 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+        // var_dump($model->login());die;
+        if (isset($_POST['LoginForm'])) {
+            $model->attributes = $_POST['LoginForm'];
+        }
+        // echo "<pre>";var_dump($model);die;
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
-        $model->password = '';
+        // $model->password = '';
+       
 
         return $this->render('login', [
             'model' => $model,
         ]);
+        
     }
 
     /**
