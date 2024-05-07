@@ -19,8 +19,14 @@
         [
             'label' => 'Master',
             'items' => [
-                ['label' => 'Product', 'url' => ['/product/index']],
-                ['label' => 'Kategori', 'url' => ['/kategori/index']],
+                // ['label' => 'Product', 'url' => ['/product/index']],
+                // ['label' => 'Kategori', 'url' => ['/kategori/index']],
+                ['label' => 'Pasien', 'url' => ['/pasien/index']],
+                ['label' => 'Dokter', 'url' => ['/dokter/index']],
+                ['label' => 'Penyakit', 'url' => ['/penyakit/index']],
+                ['label' => 'Kategori Obat', 'url' => ['/kategoriObat/index']],
+                ['label' => 'Obat', 'url' => ['/obat/index']],
+                ['label' => 'Jadwal Praktik', 'url' => ['/jadwalPraktik/index']],
             ],
         ],
     ];

@@ -35,7 +35,7 @@ $this->title = 'My Yii Application';
             <div class="col-lg-4">
 
 
-                <a class="jur btn btn-outline-secondary" href="master">
+                <a class="jur btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">
                     <i class="fa-solid fa-recycle"></i>
                     <div class="text"> Master &raquo;</div>
                 </a>
