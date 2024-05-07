@@ -16,8 +16,13 @@
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Product', 'url' => ['/product/index']],
-        ['label' => 'Kategori', 'url' => ['/kategori/index']],
+        [
+            'label' => 'Master',
+            'items' => [
+                ['label' => 'Product', 'url' => ['/product/index']],
+                ['label' => 'Kategori', 'url' => ['/kategori/index']],
+            ],
+        ],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
