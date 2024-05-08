@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Transaksi', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -33,29 +34,35 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_pasien',
                 'value' => function ($model) {
-                    return $model->pasien->id.', ('. $model->pasien->nama_pasien.')';
+                    return $model->pasien->id . ', (' . $model->pasien->nama_pasien . ')';
                 }
             ],
             [
                 'attribute' => 'id_dokter',
                 'value' => function ($model) {
-                    return $model->dokter->id.', ('. $model->dokter->nama_dokter.')';
+                    return $model->dokter->id . ', (' . $model->dokter->nama_dokter . ')';
                 }
             ],
             [
                 'attribute' => 'id_jadwal_praktik',
                 'value' => function ($model) {
-                    return $model->jadwalPraktik->id.', ('. $model->jadwalPraktik->Hari.')';
+                    return $model->jadwalPraktik->id . ', (' . $model->jadwalPraktik->Hari . ')';
                 }
             ],
             'tanggal_transaksi',
-            //'total_harga',
-            //'status',
+            [
+                'attribute' => 'total_harga',
+                'value' => function ($model) {
+                    return $model->getTotalHarga();
+                }
+            ],
+
+            'status',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Transaksi $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

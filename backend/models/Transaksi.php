@@ -64,6 +64,40 @@ class Transaksi extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getTotalHarga()
+    {
+        // Ambil semua item transaksi obat untuk transaksi ini
+        $transaksiObat = $this->getTransaksiObats()->all();
+
+        // Hitung total harga obat
+        $totalHargaObat = 0;
+        foreach ($transaksiObat as $item) {
+            $totalHargaObat += $item->jumlah * $item->obat->harga_obat;
+        }
+
+        // Ambil semua item transaksi tindakan untuk transaksi ini
+        $transaksiTindakan = $this->getTransaksiTindakans()->all();
+
+        // Hitung total harga tindakan
+        $totalHargaTindakan = 0;
+        foreach ($transaksiTindakan as $item) {
+            $totalHargaTindakan += $item->tindakan->tarif;
+        }
+
+        // Hitung total harga keseluruhan transaksi
+        $totalHargaKeseluruhan = $totalHargaObat + $totalHargaTindakan;
+
+        return $totalHargaKeseluruhan;
+    }
+
+    public function init()
+    {
+        parent::init();
+        $this->total_harga = 0; // Set nilai default untuk total_harga
+    }
+
+
+
     /**
      * Gets query for [[Dokter]].
      *

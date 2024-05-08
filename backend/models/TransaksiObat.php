@@ -70,4 +70,19 @@ class TransaksiObat extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transaksi::class, ['id' => 'id_transaksi']);
     }
+
+    // melakukan aftersave agar stok obat berkurang
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        if ($insert) {
+            // Mendapatkan model obat yang berhubungan dengan transaksi ini
+            $obat = $this->obat;
+            // Mengurangi stok obat sesuai jumlah yang digunakan dalam transaksi ini
+            $obat->stok_obat -= $this->jumlah;
+            // Simpan perubahan stok obat
+            $obat->save();
+        }
+    }
 }
