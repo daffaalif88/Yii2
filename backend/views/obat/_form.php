@@ -14,7 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nama_obat')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_kategori')->textInput() ?>
+    <?= $form->field($model, 'id_kategori')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\backend\models\KategoriObat::find()->all(), 'id', 'nama_kategori'),
+        ['prompt' => 'Pilih Kategori']
+    ) ?>
 
     <?= $form->field($model, 'harga_obat')->textInput() ?>
 
