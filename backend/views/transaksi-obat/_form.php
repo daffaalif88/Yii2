@@ -14,9 +14,16 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'id_transaksi')->textInput() ?> -->
     <?= $form->field($model, 'id_transaksi')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\backend\models\Transaksi::find()->all(), 'id', 'id'),
-        ['prompt' => 'Pilih Transaksi']
+        \yii\helpers\ArrayHelper::map(
+            \backend\models\Transaksi::find()->all(),
+            'id',
+            function ($transaksi) {
+                return $transaksi->id . ' - ' .$transaksi->id_pasien. ' - ' . $transaksi->pasien->nama_pasien;
+            }
+        ),
+        ['prompt' => 'Pilih Pasien']
     ) ?>
+
 
     <!-- <?= $form->field($model, 'id_obat')->textInput() ?> -->
     <?= $form->field($model, 'id_obat')->dropDownList(
