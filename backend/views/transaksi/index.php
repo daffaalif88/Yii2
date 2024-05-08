@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'total_harga',
                 'value' => function ($model) {
-                    return $model->getTotalHarga();
+                    return 'Rp. '.number_format($model->getTotalHarga(), 0, '', ',');
                 }
             ],
 

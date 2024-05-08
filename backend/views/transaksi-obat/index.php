@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var backend\models\TransaksiObatSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Transaksi Obats';
+$this->title = 'Pembelian Obat';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="transaksi-obat-index">

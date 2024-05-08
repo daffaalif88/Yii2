@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -13,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="transaksi-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Kode Transaksi: <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -25,7 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <br>
+    <h1>Detail Transaksi</h1>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,24 +35,76 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_pasien',
                 'value' => function ($model) {
-                    return $model->pasien->id.', ('. $model->pasien->nama_pasien.')';
+                    return $model->pasien->id . ', (' . $model->pasien->nama_pasien . ')';
                 }
             ],
             [
                 'attribute' => 'id_dokter',
                 'value' => function ($model) {
-                    return $model->dokter->id.', ('. $model->dokter->nama_dokter.')';
+                    return $model->dokter->id . ', (' . $model->dokter->nama_dokter . ')';
                 }
             ],
             [
                 'attribute' => 'id_jadwal_praktik',
                 'value' => function ($model) {
-                    return $model->jadwalPraktik->id.', ('. $model->jadwalPraktik->Hari.')';
+                    return $model->jadwalPraktik->id . ', (' . $model->jadwalPraktik->Hari . ')';
                 }
             ],
             'tanggal_transaksi',
-            'total_harga',
+            [
+                'attribute' => 'total_harga',
+                'value' => function ($model) {
+                    return 'Rp. ' . number_format($model->getTotalHarga(), 0, '', ',');
+                }
+            ],
             'status',
+        ],
+    ]) ?>
+    <br>
+    <h3>Daftar Obat Yang Dibeli:</h3>
+    <?= GridView::widget([
+        'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObats]),
+        'columns' => [
+            'id',
+            [
+                'attribute' => 'Id Obat',
+                'value' => function ($model) {
+                    return $model->obat->id . ', (' . $model->obat->nama_obat . ')';
+                }
+            ],
+            'jumlah',
+            [
+                'attribute' => 'Harga Satuan',
+                'value' => function ($model) {
+                    return 'Rp. ' . number_format($model->obat->harga_obat, 0, '', ',');
+                }
+            ],
+            [
+                'attribute' => 'Total',
+                'value' => function ($model) {
+                    return 'Rp. ' . number_format($model->obat->harga_obat * $model->jumlah, 0, '', ',');
+                }
+            ],
+        ],
+    ]) ?>
+
+    <h3>Daftar Tindakan Yang Dilakukan</h3>
+    <?= GridView::widget([
+        'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiTindakan]),
+        'columns' => [
+            'id',
+            [
+                'attribute' => 'Id Tindakan',
+                'value' => function ($model) {
+                    return $model->tindakan->id . ', (' . $model->tindakan->nama_tindakan . ')';
+                }
+            ],
+            [
+                'attribute' => 'Harga Tindakan',
+                'value' => function ($model) {
+                    return 'Rp. ' . number_format($model->tindakan->tarif, 0, '', ',');
+                }
+            ],
         ],
     ]) ?>
 

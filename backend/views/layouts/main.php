@@ -60,9 +60,9 @@ AppAsset::register($this);
                     // ['label' => 'Product', 'url' => ['/product/index']],
                     // ['label' => 'Kategori', 'url' => ['/kategori/index']],
                     ['label' => 'Transaksi', 'url' => ['/transaksi/index']],
-                    ['label' => 'Transaksi Penyakit', 'url' => ['/transaksi-penyakit/index']],
-                    ['label' => 'Transaksi Obat', 'url' => ['/transaksi-obat/index']],
-                    ['label' => 'Transaksi Tindakan', 'url' => ['/transaksi-tindakan/index']],
+                    ['label' => 'Diagnosa Penyakit', 'url' => ['/transaksi-penyakit/index']],
+                    ['label' => 'Pembelian Obat', 'url' => ['/transaksi-obat/index']],
+                    ['label' => 'Tindakan Yang Dilakukan', 'url' => ['/transaksi-tindakan/index']],
                 ],
             ],
         ];

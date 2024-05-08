@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use backend\models\Transaksi;
+use backend\models\TransaksiObat;
 use backend\models\TransaksiSearch;
+use backend\models\TransaksiTindakan;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -22,7 +24,7 @@ class TransaksiController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','create','updates','view'], // Aksi mana yang akan diberlakukan filter
+                'only' => ['index', 'create', 'updates', 'view'], // Aksi mana yang akan diberlakukan filter
                 'rules' => [
                     [
                         'allow' => true,
@@ -68,8 +70,19 @@ class TransaksiController extends Controller
      */
     public function actionView($id)
     {
+        // return $this->render('view', [
+        //     'model' => $this->findModel($id),
+        // ]);
+
+        $model = $this->findModel($id);
+        $transaksiObats = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
+        $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
+
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'transaksiObats' => $transaksiObats,
+            'transaksiTindakan' => $transaksiTindakan,
         ]);
     }
 

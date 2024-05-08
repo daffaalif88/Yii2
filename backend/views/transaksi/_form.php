@@ -18,20 +18,38 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'id_pasien')->textInput() ?>  -->
     <?= $form->field($model, 'id_pasien')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\backend\models\Pasien::find()->all(), 'id', 'nama_pasien'),
+        \yii\helpers\ArrayHelper::map(
+            \backend\models\Pasien::find()->all(),
+            'id',
+            function ($pasien) {
+                return $pasien->id . ' - ' . $pasien->nama_pasien;
+            }
+        ),
         ['prompt' => 'Pilih Pasien']
     ) ?>
 
     <!-- <?= $form->field($model, 'id_dokter')->textInput() ?> -->
     <?= $form->field($model, 'id_dokter')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\backend\models\Dokter::find()->all(), 'id', 'nama_dokter'),
-        ['prompt' => 'Pilih Dokter']
+        \yii\helpers\ArrayHelper::map(
+            \backend\models\Dokter::find()->all(),
+            'id',
+            function ($dokter) {
+                return $dokter->id . ' - ' . $dokter->nama_dokter;
+            }
+        ),
+        ['prompt' => 'Pilih dokter']
     ) ?>
 
     <!-- <?= $form->field($model, 'id_jadwal_praktik')->textInput() ?> masih Bug-->
     <?= $form->field($model, 'id_jadwal_praktik')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\backend\models\JadwalPraktik::find()->all(), 'id', 'Hari'),
-        ['prompt' => 'Pilih jadwal']
+        \yii\helpers\ArrayHelper::map(
+            \backend\models\JadwalPraktik::find()->all(),
+            'id',
+            function ($jadwal_praktik) {
+                return $jadwal_praktik->id . ' - ' . $jadwal_praktik->Hari;
+            }
+        ),
+        ['prompt' => 'Pilih Pasien']
     ) ?>
 
     <!-- <?= $form->field($model, 'tanggal_transaksi')->textInput() ?> -->

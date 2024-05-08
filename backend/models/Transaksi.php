@@ -90,12 +90,6 @@ class Transaksi extends \yii\db\ActiveRecord
         return $totalHargaKeseluruhan;
     }
 
-    public function init()
-    {
-        parent::init();
-        $this->total_harga = 0; // Set nilai default untuk total_harga
-    }
-
 
 
     /**
