@@ -12,11 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_transaksi')->textInput() ?>
+    <!-- <?= $form->field($model, 'id_transaksi')->textInput() ?> -->
+    <?= $form->field($model, 'id_transaksi')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\backend\models\Transaksi::find()->all(), 'id', 'id'),
+        ['prompt' => 'Pilih Transaksi']
+    ) ?>
 
-    <?= $form->field($model, 'id_tindakan')->textInput() ?>
+    <!-- <?= $form->field($model, 'id_tindakan')->textInput() ?> -->
+    <?= $form->field($model, 'id_tindakan')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\backend\models\Tindakan::find()->all(), 'id', 'nama_tindakan'),
+        ['prompt' => 'Pilih Tindakan']
+    ) ?>
 
-    <?= $form->field($model, 'jumlah')->textInput() ?>
+    <br>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

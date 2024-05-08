@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Tindakan;
 use backend\models\TindakanSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,6 +19,18 @@ class TindakanController extends Controller
      */
     public function behaviors()
     {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','create','updates','view'], // Aksi mana yang akan diberlakukan filter
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                    ],
+                ],
+            ],
+        ];
         return array_merge(
             parent::behaviors(),
             [

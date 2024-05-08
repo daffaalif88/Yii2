@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Dokter;
 use backend\models\DokterSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,11 +14,25 @@ use yii\filters\VerbFilter;
  */
 class DokterController extends Controller
 {
+
+    
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','create','updates','view'], // Aksi mana yang akan diberlakukan filter
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                    ],
+                ],
+            ],
+        ];
         return array_merge(
             parent::behaviors(),
             [

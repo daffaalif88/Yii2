@@ -19,9 +19,27 @@ use yii\widgets\ActiveForm;
         ['prompt' => 'Pilih Kategori']
     ) ?>
 
-    <?= $form->field($model, 'harga_obat')->textInput() ?>
+    <!-- <?= $form->field($model, 'harga_obat')->textInput() ?> -->
+    <?= $form->field($model, 'harga_obat')->widget(\yii\widgets\MaskedInput::className(), [
+        'clientOptions' => [
+            'alias' => 'numeric',
+            'groupSeparator' => ',',
+            'autoGroup' => true,
+            'removeMaskOnSubmit' => true,
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'stok_obat')->textInput() ?>
+    <!-- <?= $form->field($model, 'stok_obat')->textInput() ?> -->
+    <?= $form->field($model, 'stok_obat')->widget(\yii\widgets\MaskedInput::className(), [
+        'clientOptions' => [
+            'alias' => 'numeric',
+            'groupSeparator' => ',',
+            'autoGroup' => true,
+            'removeMaskOnSubmit' => true,
+        ],
+    ]) ?>
+
+    <br>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

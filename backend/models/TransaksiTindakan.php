@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $id_transaksi
  * @property int $id_tindakan
- * @property int $jumlah
+ *
  *
  * @property Tindakan $tindakan
  * @property Transaksi $transaksi
@@ -32,7 +32,7 @@ class TransaksiTindakan extends \yii\db\ActiveRecord
     {
         return [
             [['id_transaksi', 'id_tindakan'], 'required'],
-            [['id_transaksi', 'id_tindakan', 'jumlah'], 'integer'],
+            [['id_transaksi', 'id_tindakan'], 'integer'],
             [['id_tindakan'], 'exist', 'skipOnError' => true, 'targetClass' => Tindakan::class, 'targetAttribute' => ['id_tindakan' => 'id']],
             [['id_transaksi'], 'exist', 'skipOnError' => true, 'targetClass' => Transaksi::class, 'targetAttribute' => ['id_transaksi' => 'id']],
         ];
@@ -47,7 +47,6 @@ class TransaksiTindakan extends \yii\db\ActiveRecord
             'id' => 'ID',
             'id_transaksi' => 'Id Transaksi',
             'id_tindakan' => 'Id Tindakan',
-            'jumlah' => 'Jumlah',
         ];
     }
 

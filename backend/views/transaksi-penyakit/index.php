@@ -1,6 +1,6 @@
 <?php
 
-use backend\models\TransaksiPenyakit;
+use app\models\TransaksiPenyakit;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -30,9 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_transaksi',
-            'id_penyakit',
-            'jumlah',
+            [
+                'attribute' => 'id_transaksi',
+                'value' => function ($model) {
+                    return $model->transaksi->id.', ('. $model->transaksi->pasien->nama_pasien.')';
+                }
+            ],
+            [
+                'attribute' => 'id_penyakit',
+                'value' => function ($model) {
+                    return $model->penyakit->id.', ('. $model->penyakit->nama_penyakit.')';
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, TransaksiPenyakit $model, $key, $index, $column) {

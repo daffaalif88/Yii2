@@ -17,7 +17,7 @@ class TransaksiTindakanSearch extends TransaksiTindakan
     public function rules()
     {
         return [
-            [['id', 'id_transaksi', 'id_tindakan', 'jumlah'], 'integer'],
+            [['id', 'id_transaksi', 'id_tindakan'], 'integer'],
         ];
     }
 
@@ -60,7 +60,6 @@ class TransaksiTindakanSearch extends TransaksiTindakan
             'id' => $this->id,
             'id_transaksi' => $this->id_transaksi,
             'id_tindakan' => $this->id_tindakan,
-            'jumlah' => $this->jumlah,
         ]);
 
         return $dataProvider;

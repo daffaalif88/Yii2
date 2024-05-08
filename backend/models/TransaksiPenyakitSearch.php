@@ -4,10 +4,10 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\TransaksiPenyakit;
+use app\models\TransaksiPenyakit;
 
 /**
- * TransaksiPenyakitSearch represents the model behind the search form of `backend\models\TransaksiPenyakit`.
+ * TransaksiPenyakitSearch represents the model behind the search form of `app\models\TransaksiPenyakit`.
  */
 class TransaksiPenyakitSearch extends TransaksiPenyakit
 {
@@ -17,7 +17,7 @@ class TransaksiPenyakitSearch extends TransaksiPenyakit
     public function rules()
     {
         return [
-            [['id', 'id_transaksi', 'id_penyakit', 'jumlah'], 'integer'],
+            [['id', 'id_transaksi', 'id_penyakit'], 'integer'],
         ];
     }
 
@@ -60,7 +60,6 @@ class TransaksiPenyakitSearch extends TransaksiPenyakit
             'id' => $this->id,
             'id_transaksi' => $this->id_transaksi,
             'id_penyakit' => $this->id_penyakit,
-            'jumlah' => $this->jumlah,
         ]);
 
         return $dataProvider;

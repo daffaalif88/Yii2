@@ -31,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'nama_obat',
-            'id_kategori',
+            [
+                'attribute' => 'id_kategori',
+                'value' => function ($model) {
+                    return $model->kategori->id.', ('. $model->kategori->nama_kategori.')';
+                }
+            ],
             'harga_obat',
             'stok_obat',
             [

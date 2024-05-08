@@ -1,7 +1,9 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
+use backend\models\Penyakit;
+use backend\models\Transaksi;
 use Yii;
 
 /**
@@ -10,7 +12,6 @@ use Yii;
  * @property int $id
  * @property int $id_transaksi
  * @property int $id_penyakit
- * @property int $jumlah
  *
  * @property Penyakit $penyakit
  * @property Transaksi $transaksi
@@ -32,7 +33,7 @@ class TransaksiPenyakit extends \yii\db\ActiveRecord
     {
         return [
             [['id_transaksi', 'id_penyakit'], 'required'],
-            [['id_transaksi', 'id_penyakit', 'jumlah'], 'integer'],
+            [['id_transaksi', 'id_penyakit'], 'integer'],
             [['id_penyakit'], 'exist', 'skipOnError' => true, 'targetClass' => Penyakit::class, 'targetAttribute' => ['id_penyakit' => 'id']],
             [['id_transaksi'], 'exist', 'skipOnError' => true, 'targetClass' => Transaksi::class, 'targetAttribute' => ['id_transaksi' => 'id']],
         ];
@@ -47,7 +48,6 @@ class TransaksiPenyakit extends \yii\db\ActiveRecord
             'id' => 'ID',
             'id_transaksi' => 'Id Transaksi',
             'id_penyakit' => 'Id Penyakit',
-            'jumlah' => 'Jumlah',
         ];
     }
 

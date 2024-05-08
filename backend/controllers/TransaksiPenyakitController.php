@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use backend\models\TransaksiPenyakit;
+use app\models\TransaksiPenyakit;
 use backend\models\TransaksiPenyakitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

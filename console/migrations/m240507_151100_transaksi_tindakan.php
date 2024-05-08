@@ -16,7 +16,6 @@ class m240507_151100_transaksi_tindakan extends Migration
             'id' => $this->primaryKey(),
             'id_transaksi' => $this->integer()->notNull(),
             'id_tindakan' => $this->integer()->notNull(),
-            'jumlah' => $this->integer()->notNull()->defaultValue(0),
         ]);
 
         $this->addForeignKey(

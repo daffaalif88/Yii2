@@ -17,7 +17,6 @@ class m240507_151110_transaksi_penyakit extends Migration
             'id' => $this->primaryKey(),
             'id_transaksi' => $this->integer()->notNull(),
             'id_penyakit' => $this->integer()->notNull(),
-            'jumlah' => $this->integer()->notNull()->defaultValue(0),
         ]);
 
         $this->addForeignKey(

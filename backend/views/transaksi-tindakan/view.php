@@ -30,9 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'id_transaksi',
-            'id_tindakan',
-            'jumlah',
+            [
+                'attribute' => 'id_transaksi',
+                'value' => function ($model) {
+                    return $model->transaksi->id.', ('. $model->transaksi->pasien->nama_pasien.')';
+                }
+            ],
+            [
+                'attribute' => 'id_tindakan',
+                'value' => function ($model) {
+                    return $model->tindakan->id.', ('. $model->tindakan->nama_tindakan.')';
+                }
+            ],
         ],
     ]) ?>
 

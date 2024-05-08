@@ -30,8 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_transaksi',
-            'id_obat',
+            [
+                'attribute' => 'id_transaksi',
+                'value' => function ($model) {
+                    return $model->transaksi->id.', ('. $model->transaksi->pasien->nama_pasien.')';
+                }
+            ],
+            [
+                'attribute' => 'id_obat',
+                'value' => function ($model) {
+                    return $model->obat->id.', ('. $model->obat->nama_obat.')';
+                }
+            ],
             'jumlah',
             [
                 'class' => ActionColumn::className(),

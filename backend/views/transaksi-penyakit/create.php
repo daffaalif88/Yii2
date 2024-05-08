@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var backend\models\TransaksiPenyakit $model */
+/** @var app\models\TransaksiPenyakit $model */
 
 $this->title = 'Create Transaksi Penyakit';
 $this->params['breadcrumbs'][] = ['label' => 'Transaksi Penyakits', 'url' => ['index']];

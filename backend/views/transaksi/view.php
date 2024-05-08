@@ -30,9 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'id_pasien',
-            'id_dokter',
-            'id_jadwal_praktik',
+            [
+                'attribute' => 'id_pasien',
+                'value' => function ($model) {
+                    return $model->pasien->id.', ('. $model->pasien->nama_pasien.')';
+                }
+            ],
+            [
+                'attribute' => 'id_dokter',
+                'value' => function ($model) {
+                    return $model->dokter->id.', ('. $model->dokter->nama_dokter.')';
+                }
+            ],
+            [
+                'attribute' => 'id_jadwal_praktik',
+                'value' => function ($model) {
+                    return $model->jadwalPraktik->id.', ('. $model->jadwalPraktik->Hari.')';
+                }
+            ],
             'tanggal_transaksi',
             'total_harga',
             'status',
