@@ -61,7 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <br>
-    <h3>Daftar Obat Yang Dibeli:</h3>
+    <h3>Daftar Obat Yang Dibeli:</h3> 
+    <!-- <button class="btn btn-primary">Tambah Obat</button> -->
+    <a href="http://localhost:8082/backend/web/transaksi-obat/create" class="btn btn-primary">Tambah Obat</a>
     <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObats]),
         'columns' => [
@@ -89,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <h3>Daftar Tindakan Yang Dilakukan</h3>
+    <a href="http://localhost:8082/backend/web/transaksi-tindakan/create" class="btn btn-primary">Tambah Obat</a>
     <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiTindakan]),
         'columns' => [

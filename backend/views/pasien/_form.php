@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'tanggal_lahir')->textInput() ?> -->
     <?= $form->field($model, 'tanggal_lahir')->widget(\yii\jui\DatePicker::classname(), [
-        'options' => ['class' => 'form-control read-only'],
+        'options' => ['class' => 'form-control', 'readonly' => true],
         'dateFormat' => 'yyyy-MM-dd', // Atur format tanggal yang diinginkan sesuai kebutuhan Anda
         'clientOptions' => [
             'changeYear' => true, // Opsional: Izinkan perubahan tahun
@@ -27,7 +27,8 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'jenis_kelamin')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'jenis_kelamin')->radioList(['L' => 'Laki-laki', 'P' => 'Perempuan']) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

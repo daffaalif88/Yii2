@@ -66,6 +66,27 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionMaster()
+    {
+        return $this->render('master');
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionTransaksi()
+    {
+        return $this->render('transaksi');
+    }
+
+
+    /**
      * Login action.
      *
      * @return string|Response

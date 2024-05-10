@@ -24,7 +24,7 @@ $this->title = 'My Yii Application';
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">Selamat Datang!</h1><br>
 
-        <p class="lead">Selamat Datang di Sistem Infromasi</p>
+        <p class="lead">Selamat Datang di Menu Master Aplikasi</p>
 
         <!-- <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p> -->
     </div><br><br>
@@ -33,26 +33,40 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-lg-4">
-
-
-                <a class="jur btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">
+                <a class="jur btn btn-outline-primary" href="../pasien/index">
                     <i class="fa-solid fa-recycle"></i>
-                    <div class="text"> Master &raquo;</div>
+                    <div class="text" style="color: black;"> pasien &raquo;</div>
                 </a>
             </div>
             <div class="col-lg-4">
-
-                <a class="jur btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">
-                    <div class="text"> Transaksi &raquo;</div>
+                <a class="jur btn btn-outline-secondary" href="../dokter/index">
+                    <div class="text" style="color: black;"> Dokter &raquo;</div>
                 </a>
             </div>
             <div class="col-lg-4">
-
-                <a class="jur btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">
-                    <div class="text">Informasi &raquo;</div>
+                <a class="jur btn btn-outline-success" href="../penyakit/index">
+                    <div class="text" style="color: black;">Penyakit &raquo;</div>
                 </a>
             </div>
         </div>
-
+        <br>
+        <div class="row">
+            <div class="col-lg-4">
+                <a class="jur btn btn-outline-danger" href="../kategori-obat/index">
+                    <i class="fa-solid fa-recycle"></i>
+                    <div class="text" style="color: black;"> Kategori Obat &raquo;</div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a class="jur btn btn-outline-warning" href="../obat/index">
+                    <div class="text" style="color: black;"> Obat &raquo;</div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a class="jur btn btn-outline-info" href="../jadwal-praktik/index">
+                    <div class="text" style="color: black;">jadwal Praktik &raquo;</div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
