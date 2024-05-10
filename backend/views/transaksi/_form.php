@@ -64,14 +64,14 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <!-- <?= $form->field($model, 'total_harga')->textInput() ?> -->
-    <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
+    <!-- <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
         'clientOptions' => [
             'alias' => 'numeric',
             'groupSeparator' => ',',
             'autoGroup' => true,
             'removeMaskOnSubmit' => true,
         ],
-    ]) ?>
+    ]) ?> -->
 
     <!-- <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model, 'status')->dropDownList([

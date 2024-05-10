@@ -33,13 +33,13 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-lg-4">
-                <a class="jur btn btn-outline-secondary" href="master">
+                <a class="jur btn btn-outline-secondary" href="site/master">
                     <i class="fa-solid fa-recycle"></i>
                     <div class="text"> Master &raquo;</div>
                 </a>
             </div>
             <div class="col-lg-4">
-                <a class="jur btn btn-outline-secondary" href="transaksi">
+                <a class="jur btn btn-outline-secondary" href="site/transaksi">
                     <div class="text"> Transaksi &raquo;</div>
                 </a>
             </div>
