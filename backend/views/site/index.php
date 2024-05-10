@@ -50,6 +50,5 @@ $this->title = 'My Yii Application';
                 </a>
             </div>
         </div>
-
     </div>
 </div>
