@@ -73,19 +73,15 @@ class TransaksiController extends Controller
      */
     public function actionView($id)
     {
-        // return $this->render('view', [
-        //     'model' => $this->findModel($id),
-        // ]);
 
         $model = $this->findModel($id);
-        $transaksiObats = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
+        $transaksiObat = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
         $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
 
-
         return $this->render('view', [
             'model' => $model,
-            'transaksiObats' => $transaksiObats,
+            'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,
         ]);
@@ -160,14 +156,14 @@ class TransaksiController extends Controller
             return $this->redirect(['view', 'id' => $id]);
         }
 
-        $transaksiObats = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
+        $transaksiObat = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
         $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
 
         // Membuat konten HTML untuk PDF
         $content = $this->renderPartial('print', [
             'model' => $model,
-            'transaksiObats' => $transaksiObats,
+            'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,
         ]);

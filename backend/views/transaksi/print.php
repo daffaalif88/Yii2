@@ -50,10 +50,10 @@ use yii\widgets\DetailView;
 </div>
 
 <hr>
-<h3>Daftar Obat:</h3>
+<h3>Detail Obat:</h3>
 <div class="container">
     <?= GridView::widget([
-    'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObats]),
+    'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObat]),
     'columns' => [
         // 'id',
         [
@@ -80,7 +80,7 @@ use yii\widgets\DetailView;
 </div>
 
 <hr>
-<h2>Daftar tindakan</h2>
+<h3>Detail tindakan:</h3>
 <div class="container">
     <?= GridView::widget([
     'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiTindakan]),
@@ -102,7 +102,7 @@ use yii\widgets\DetailView;
 ]) ?>
 </div>
 <hr>
-<h2>Diagnosa Penyakit</h2>
+<h3>Diagnosa Penyakit:</h3>
 <div class="container">
     <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiPenyakit]),
