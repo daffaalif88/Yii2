@@ -2,10 +2,13 @@
 
 namespace backend\controllers;
 
+use app\models\TransaksiPenyakit;
 use backend\models\Transaksi;
 use backend\models\TransaksiObat;
 use backend\models\TransaksiSearch;
 use backend\models\TransaksiTindakan;
+use kartik\mpdf\Pdf;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -24,7 +27,7 @@ class TransaksiController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'create', 'updates', 'view'], // Aksi mana yang akan diberlakukan filter
+                'only' => ['index', 'create', 'updates', 'view','print'], // Aksi mana yang akan diberlakukan filter
                 'rules' => [
                     [
                         'allow' => true,
@@ -77,12 +80,14 @@ class TransaksiController extends Controller
         $model = $this->findModel($id);
         $transaksiObats = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
+        $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
 
 
         return $this->render('view', [
             'model' => $model,
             'transaksiObats' => $transaksiObats,
             'transaksiTindakan' => $transaksiTindakan,
+            'transaksiPenyakit' => $transaksiPenyakit,
         ]);
     }
 
@@ -142,6 +147,52 @@ class TransaksiController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionPrint($id)
+    {
+        $model = $this->findModel($id); // Metode untuk mendapatkan model berdasarkan ID
+        // Hitung total harga
+        $totalHarga = $model->getTotalHarga();
+
+        // Update model dengan total harga
+        $model->total_harga = $totalHarga;
+        if (!$model->save()) {
+            Yii::$app->session->setFlash('error', 'Gagal menyimpan total harga.');
+            return $this->redirect(['view', 'id' => $id]);
+        }
+
+        $transaksiObats = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
+        $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
+        $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
+
+        // Membuat konten HTML untuk PDF
+        $content = $this->renderPartial('print', [
+            'model' => $model,
+            'transaksiObats' => $transaksiObats,
+            'transaksiTindakan' => $transaksiTindakan,
+            'transaksiPenyakit' => $transaksiPenyakit,
+        ]);
+
+        // Konfigurasi PDF
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE, // mode default
+            'format' => Pdf::FORMAT_A4, // format A4
+            'orientation' => Pdf::ORIENT_PORTRAIT, // orientasi potret
+            'destination' => Pdf::DEST_BROWSER, // tampilkan di browser
+            'content' => $content, // konten yang akan dicetak
+            'options' => [
+                'title' => 'Judul Dokumen',
+                'subject' => 'Deskripsi Dokumen'
+            ],
+            'methods' => [
+                'SetHeader' => ['Laporan Transaksi Medis Rumah Sakit Daffa Sentosa||Tanggal: ' . date('d-m-Y')],
+                'SetFooter' => ['By Muhammad Daffa Nur Alif||{PAGENO}'], // Footer dengan nomor halaman
+            ]
+            
+        ]);
+
+        // Render PDF
+        return $pdf->render();
+    }
     /**
      * Finds the Transaksi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

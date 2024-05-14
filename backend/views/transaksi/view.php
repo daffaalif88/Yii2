@@ -25,6 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php
+        if ($model->status == 'lunas') {
+            echo Html::a('Print', ['print', 'id' => $model->id], ['class' => 'btn btn-success', 'target' => '_blank']);
+
+        } else {
+            echo Html::a('Print', '#', ['class' => 'btn btn-success disabled', 'onclick' => 'return false;', 'title' => 'Pembayaran belum lunas']);
+        }
+        ?>
+
+    
+
     </p>
     <br>
     <h1>Detail Transaksi</h1>
@@ -35,19 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_pasien',
                 'value' => function ($model) {
-                    return $model->pasien->id . ', (' . $model->pasien->nama_pasien . ')';
+                    return $model->pasien->id . '- (' . $model->pasien->nama_pasien . ')';
                 }
             ],
             [
                 'attribute' => 'id_dokter',
                 'value' => function ($model) {
-                    return $model->dokter->id . ', (' . $model->dokter->nama_dokter . ')';
+                    return $model->dokter->id . '- (' . $model->dokter->nama_dokter . ')';
                 }
             ],
             [
                 'attribute' => 'id_jadwal_praktik',
                 'value' => function ($model) {
-                    return $model->jadwalPraktik->id . ', (' . $model->jadwalPraktik->Hari . ')';
+                    return $model->jadwalPraktik->id . '- (' . $model->jadwalPraktik->Hari . ')';
                 }
             ],
             'tanggal_transaksi',
@@ -60,18 +71,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
         ],
     ]) ?>
-    <br>
-    <h3>Daftar Obat Yang Dibeli:</h3> 
+    <hr>
+    <h3>Daftar Obat Yang Dibeli:</h3>
     <!-- <button class="btn btn-primary">Tambah Obat</button> -->
     <a href="../transaksi-obat/create" class="btn btn-primary">Tambah Obat</a>
     <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObats]),
         'columns' => [
-            'id',
+            // 'id',
             [
                 'attribute' => 'Id Obat',
                 'value' => function ($model) {
-                    return $model->obat->id . ', (' . $model->obat->nama_obat . ')';
+                    return $model->obat->id . '- (' . $model->obat->nama_obat . ')';
                 }
             ],
             'jumlah',
@@ -89,23 +100,38 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
-
+    <hr>
     <h3>Daftar Tindakan Yang Dilakukan</h3>
     <a href="../transaksi-tindakan/create" class="btn btn-primary">Tambah Obat</a>
     <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiTindakan]),
         'columns' => [
-            'id',
+            // 'id',
             [
                 'attribute' => 'Id Tindakan',
                 'value' => function ($model) {
-                    return $model->tindakan->id . ', (' . $model->tindakan->nama_tindakan . ')';
+                    return $model->tindakan->id . '- (' . $model->tindakan->nama_tindakan . ')';
                 }
             ],
             [
                 'attribute' => 'Harga Tindakan',
                 'value' => function ($model) {
                     return 'Rp. ' . number_format($model->tindakan->tarif, 0, '', ',');
+                }
+            ],
+        ],
+    ]) ?>
+    <hr>
+    <h3>Diagnosa Penyakit</h3>
+    <a href="../transaksi-penyakit/create" class="btn btn-primary">Tambah Diagnosa</a>
+    <?= GridView::widget([
+        'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiPenyakit]),
+        'columns' => [
+            // 'id',
+            [
+                'attribute' => 'Id Penyakit',
+                'value' => function ($model) {
+                    return $model->penyakit->id . '- (' . $model->penyakit->nama_penyakit . ')';
                 }
             ],
         ],

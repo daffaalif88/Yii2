@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\Obat $model */
 
-$this->title = 'Create Obat';
+$this->title = 'Tambah Obat';
 $this->params['breadcrumbs'][] = ['label' => 'Obats', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

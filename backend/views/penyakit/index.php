@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var backend\models\PenyakitSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Penyakits';
+$this->title = 'Penyakit';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penyakit-index">

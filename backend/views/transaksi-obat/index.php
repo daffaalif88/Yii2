@@ -33,13 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_transaksi',
                 'value' => function ($model) {
-                    return $model->transaksi->id.', ('. $model->transaksi->pasien->nama_pasien.')';
+                    return $model->transaksi->id.' - ('. $model->transaksi->pasien->id.', '. $model->transaksi->pasien->nama_pasien.')';
                 }
             ],
             [
                 'attribute' => 'id_obat',
                 'value' => function ($model) {
-                    return $model->obat->id.', ('. $model->obat->nama_obat.')';
+                    return $model->obat->id.'- ('. $model->obat->nama_obat.')';
                 }
             ],
             'jumlah',

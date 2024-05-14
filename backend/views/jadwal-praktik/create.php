@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\JadwalPraktik $model */
 
-$this->title = 'Create Jadwal Praktik';
+$this->title = 'Tambah Jadwal Praktik';
 $this->params['breadcrumbs'][] = ['label' => 'Jadwal Praktiks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

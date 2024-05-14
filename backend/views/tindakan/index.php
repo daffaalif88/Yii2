@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var backend\models\TindakanSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Tindakans';
+$this->title = 'Tindakan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tindakan-index">

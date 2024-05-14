@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var backend\models\JadwalPraktikSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Jadwal Praktiks';
+$this->title = 'Jadwal Praktik';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jadwal-praktik-index">
