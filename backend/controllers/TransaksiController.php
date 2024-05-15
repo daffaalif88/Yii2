@@ -78,9 +78,24 @@ class TransaksiController extends Controller
         $transaksiObat = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
         $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
+        
+        // untuk create pada tabel
+        $model2 = new TransaksiObat();
+        $model3 = new TransaksiTindakan();
+        $model4 = new TransaksiPenyakit();
+       
+
+        // if ($this->request->isPost) {
+            if ($model2->load($this->request->post()) && $model2->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        // } else {
+        //     $model2->loadDefaultValues();
+        // }
 
         return $this->render('view', [
             'model' => $model,
+            'model2' => $model2,
             'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,
