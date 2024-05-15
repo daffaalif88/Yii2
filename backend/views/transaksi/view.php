@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\TransaksiObat;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -122,6 +123,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return 'Rp. ' . number_format($model->obat->harga_obat * $model->jumlah, 0, '', ',');
                 }
+            ],
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, TransaksiObat $model, $key, $index, $column) {
+                    if ($action === 'delete') {
+                        return Url::to(['transaksi/delete-obat', 'id' => $model->id]);
+                    } else {
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
+                },                
+                 'visibleButtons' => [
+                    'view' => false, // Men-disable tombol "View"
+                    'update' => false, // Men-disable tombol "Edit"
+                    // 'delete' => true, // Anda dapat menentukan status tombol "Delete" sesuai kebutuhan
+                ],
             ],
         ],
     ]) ?>

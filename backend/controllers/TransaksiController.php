@@ -159,6 +159,13 @@ class TransaksiController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
+    public function actionDeleteObat($id)
+    {
+        $model = $this->findModel($id);
+        $this->findModelObat($id)->delete();
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -222,6 +229,16 @@ class TransaksiController extends Controller
     protected function findModel($id)
     {
         if (($model = Transaksi::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    //Coba Model 
+    protected function findModelObat($id)
+    {
+        if (($model = TransaksiObat::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
