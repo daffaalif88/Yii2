@@ -89,6 +89,12 @@ class TransaksiController extends Controller
             if ($model2->load($this->request->post()) && $model2->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
+            if ($model3->load($this->request->post()) && $model3->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            if ($model4->load($this->request->post()) && $model4->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         // } else {
         //     $model2->loadDefaultValues();
         // }
@@ -96,6 +102,8 @@ class TransaksiController extends Controller
         return $this->render('view', [
             'model' => $model,
             'model2' => $model2,
+            'model3' => $model3,
+            'model4' => $model4,
             'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,

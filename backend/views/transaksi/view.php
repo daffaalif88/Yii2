@@ -19,15 +19,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Kode Transaksi: <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-        <?php
+            <?php
         if ($model->status == 'lunas') {
             echo Html::a('Print', ['print', 'id' => $model->id], ['class' => 'btn btn-success', 'target' => '_blank']);
 
@@ -35,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::a('Print', '#', ['class' => 'btn btn-success disabled', 'onclick' => 'return false;', 'title' => 'Pembayaran belum lunas']);
         }
         ?>
+        </div>
+
 
     </p>
     <br>
@@ -102,7 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             // 'id',
             [
-                'attribute' => 'Id Obat',
+                'attribute' => 'Id Obat [nama]',
                 'value' => function ($model) {
                     return $model->obat->id . ' - [' . $model->obat->nama_obat . ']';
                 }
@@ -127,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <a href="../transaksi-tindakan/create" class="btn btn-primary">Tambah Obat</a> -->
     <p class="d-inline-flex gap-1">
         <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Obat</a>
+            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Tindakan</a>
     </p>
     <div class="row">
         <div class="col">
@@ -136,8 +139,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card card-body">
 
                     <?php
-                    echo $this->render('@app/views/transaksi-obat/_form', [
-                        'model' => $model2,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
+                    echo $this->render('@app/views/transaksi-tindakan/_form', [
+                        'model' => $model3,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
                     ]);
                     
                     ?>
@@ -150,7 +153,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             // 'id',
             [
-                'attribute' => 'Id Tindakan',
+                'attribute' => 'Id Tindakan [nama]',
                 'value' => function ($model) {
                     return $model->tindakan->id . ' - [' . $model->tindakan->nama_tindakan . ']';
                 }
@@ -168,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <a href="../transaksi-penyakit/create" class="btn btn-primary">Tambah Diagnosa</a> -->
     <p class="d-inline-flex gap-1">
         <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Obat</a>
+            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Penyakit</a>
     </p>
     <div class="row">
         <div class="col">
@@ -177,8 +180,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card card-body">
 
                     <?php
-                    echo $this->render('@app/views/transaksi-obat/_form', [
-                        'model' => $model2,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
+                    echo $this->render('@app/views/transaksi-penyakit/_form', [
+                        'model' => $model4,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
                     ]);
                     
                     ?>
@@ -191,7 +194,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             // 'id',
             [
-                'attribute' => 'Id Penyakit',
+                'attribute' => 'Id Penyakit [nama]',
                 'value' => function ($model) {
                     return $model->penyakit->id . ' - [' . $model->penyakit->nama_penyakit . ']';
                 }
