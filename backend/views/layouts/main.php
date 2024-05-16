@@ -33,8 +33,11 @@ AppAsset::register($this);
     <header>
         <?php
         NavBar::begin([
-            'brandLabel' => Yii::$app->name,
+            // 'brandImage' => Yii::$app->request->baseUrl . '/path/to/your/logo.png', 
+            'brandLabel' => '<img src="//hospital.png" class="img-responsive"/> Daffa WeBDeV',
+            // 'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
+            // 'brandImage' => Yii::$app->request->baseUrl . '/backend/assets/hospital.png', 
             'options' => [
                 'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
             ],

@@ -107,6 +107,7 @@ class TransaksiController extends Controller
             'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,
+            // 'selectedTransaksiId' => $id,
         ]);
     }
 
@@ -159,12 +160,7 @@ class TransaksiController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDeleteObat($id)
-    {
-        $model = $this->findModel($id);
-        $this->findModelObat($id)->delete();
-        return $this->redirect(['view', 'id' => $model->id]);
-    }
+ 
 
     public function actionDelete($id)
     {
@@ -172,6 +168,51 @@ class TransaksiController extends Controller
 
         return $this->redirect(['index']);
     }
+    //Coba Delete 
+    public function actionDeleteObat($id)
+    {
+        // Yii::debug("Delete action called for obat with ID: $id", __METHOD__);
+        // Logika penghapusan di sini
+        // $model = $this->findModel($id);
+        // $this->findModelObat($id)->delete();
+        // return $this->redirect(['view', 'id' => $model->id]);
+
+        $model = $this->findModelObat($id);
+        $transaksiId = $model->id_transaksi;  // asumsi bahwa transaksi_id ada
+        if ($model->delete()) {
+            return $this->redirect(['view', 'id' => $transaksiId]);
+        } else {
+            Yii::error("Penghapusan gagal untuk ID: {$id}", __METHOD__);
+            return $this->redirect(['index']); // Atau halaman error khusus
+        }
+    }
+    public function actionDeleteTindakan($id)
+    {
+        // $model = $this->findModel($id);
+        // $this->findModelTindakan($id)->delete();
+        // return $this->redirect(['view', 'id' => $model->id]);
+
+        $model = $this->findModelTindakan($id);
+        $transaksiId = $model->id_transaksi;  // asumsi bahwa transaksi_id ada
+        if ($model->delete()) {
+            return $this->redirect(['view', 'id' => $transaksiId]);
+        } else {
+            Yii::error("Penghapusan gagal untuk ID: {$id}", __METHOD__);
+            return $this->redirect(['index']); // Atau halaman error khusus
+        }
+    }
+    public function actionDeletePenyakit($id)
+    {
+        $model = $this->findModelPenyakit($id);
+        $transaksiId = $model->id_transaksi;  // asumsi bahwa transaksi_id ada
+        if ($model->delete()) {
+            return $this->redirect(['view', 'id' => $transaksiId]);
+        } else {
+            Yii::error("Penghapusan gagal untuk ID: {$id}", __METHOD__);
+            return $this->redirect(['index']); // Atau halaman error khusus
+        }
+    }
+
 
     public function actionPrint($id)
     {
@@ -235,7 +276,7 @@ class TransaksiController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    //Coba Model 
+    //Coba Model Obat 
     protected function findModelObat($id)
     {
         if (($model = TransaksiObat::findOne(['id' => $id])) !== null) {
@@ -244,4 +285,23 @@ class TransaksiController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    //Coba Model TransaksiTindakan
+    protected function findModelTindakan($id)
+    {
+        if (($model = TransaksiTindakan::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    //Coba Mode TransaksiPenyakit
+    protected function findModelPenyakit($id)
+    {
+        if (($model = TransaksiPenyakit::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
 }

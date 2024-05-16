@@ -30,25 +30,35 @@ $this->title = 'My Yii Application';
     </div><br><br>
 
     <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <a class="jur btn btn-outline-secondary" href="site/master">
-                    <i class="fa-solid fa-recycle"></i>
-                    <div class="text"> Master &raquo;</div>
-                </a>
+        <!-- <div class="container"> -->
+        <div class="row" style="color:whitesmoke">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body" style="background-color:#0A2647;">
+                        <h5>Jumlah Pasien</h5>
+                        <h1><?= $jumlahPasien ?></h1>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <a class="jur btn btn-outline-secondary" href="site/transaksi">
-                    <div class="text"> Transaksi &raquo;</div>
-                </a>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body" style="background-color: #144272">
+                        <h5>Jumlah Dokter</h5>
+                        <h1><?= $jumlahDokter ?></h1>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4">
-
-                <a class="jur btn btn-outline-secondary" href="informasi">
-                    <div class="text">Informasi &raquo;</div>
-                </a>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body" style="background-color:#205295;">
+                        <h5>Jumlah Transaksi</h5>
+                        <h1><?= $jumlahTransaksi ?></h1>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- </div> -->
+        <hr>
+        <!-- <h1>Jadwal Praktik</h1> -->
     </div>
 </div>

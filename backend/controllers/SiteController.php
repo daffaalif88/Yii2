@@ -2,6 +2,9 @@
 
 namespace backend\controllers;
 
+use backend\models\Dokter;
+use backend\models\Pasien;
+use backend\models\Transaksi;
 use common\models\LoginForm;
 use Yii;
 use yii\filters\VerbFilter;
@@ -62,7 +65,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $jumlahPasien = Pasien::find()->count();
+        $jumlahDokter = Dokter::find()->count();
+        $jumlahTransaksi = Transaksi::find()->count();  // Menggunakan Active Record untuk menghitung jumlah pasien
+
+        return $this->render('index', [
+        'jumlahPasien' => $jumlahPasien,
+        'jumlahDokter' => $jumlahDokter,
+        'jumlahTransaksi' => $jumlahTransaksi, // Mem-pass jumlah pasien ke view
+    ]);
+        // return $this->render('index');
     }
 
     /**

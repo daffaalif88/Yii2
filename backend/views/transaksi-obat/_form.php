@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
                 return $transaksi->id . ' - ' .$transaksi->id_pasien. ' - ' . $transaksi->pasien->nama_pasien;
             }
         ),
-        ['prompt' => 'Pilih Pasien']
+        ['prompt' => 'Pilih Transaksi Pasien']
     ) ?>
 
 

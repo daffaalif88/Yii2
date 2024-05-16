@@ -1,6 +1,8 @@
 <?php
 
+use app\models\TransaksiPenyakit;
 use backend\models\TransaksiObat;
+use backend\models\TransaksiTindakan;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -127,16 +129,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, TransaksiObat $model, $key, $index, $column) {
+                    // Mengecek aksi (action) yang sedang dibuat URL-nya
                     if ($action === 'delete') {
+                        // Jika aksi adalah 'delete', URL diarahkan ke 'transaksi/delete-obat'
                         return Url::to(['transaksi/delete-obat', 'id' => $model->id]);
                     } else {
+                        // Untuk aksi lain, gunakan URL default
                         return Url::toRoute([$action, 'id' => $model->id]);
                     }
-                },                
-                 'visibleButtons' => [
-                    'view' => false, // Men-disable tombol "View"
-                    'update' => false, // Men-disable tombol "Edit"
-                    // 'delete' => true, // Anda dapat menentukan status tombol "Delete" sesuai kebutuhan
+                },
+                'visibleButtons' => [
+                    'view' => false,  // Menonaktifkan tombol "View"
+                    'update' => false,  // Menonaktifkan tombol "Edit"
+                    'delete' => true,  // Mengaktifkan tombol "Delete"
                 ],
             ],
         ],
@@ -180,6 +185,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     return 'Rp. ' . number_format($model->tindakan->tarif, 0, '', ',');
                 }
             ],
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, TransaksiTindakan $model, $key, $index, $column) {
+                    // Mengecek aksi (action) yang sedang dibuat URL-nya
+                    if ($action === 'delete') {
+                        // Jika aksi adalah 'delete', URL diarahkan ke 'transaksi/delete-obat'
+                        return Url::to(['transaksi/delete-tindakan', 'id' => $model->id]);
+                    } else {
+                        // Untuk aksi lain, gunakan URL default
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
+                },
+                'visibleButtons' => [
+                    'view' => false,  // Menonaktifkan tombol "View"
+                    'update' => false,  // Menonaktifkan tombol "Edit"
+                    'delete' => true,  // Mengaktifkan tombol "Delete"
+                ],
+            ],
         ],
     ]) ?>
     <hr>
@@ -214,6 +237,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return $model->penyakit->id . ' - [' . $model->penyakit->nama_penyakit . ']';
                 }
+            ],
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, TransaksiPenyakit $model, $key, $index, $column) {
+                    // Mengecek aksi (action) yang sedang dibuat URL-nya
+                    if ($action === 'delete') {
+                        // Jika aksi adalah 'delete', URL diarahkan ke 'transaksi/delete-obat'
+                        return Url::to(['transaksi/delete-penyakit', 'id' => $model->id]);
+                    } else {
+                        // Untuk aksi lain, gunakan URL default
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
+                },
+                'visibleButtons' => [
+                    'view' => false,  // Menonaktifkan tombol "View"
+                    'update' => false,  // Menonaktifkan tombol "Edit"
+                    'delete' => true,  // Mengaktifkan tombol "Delete"
+                ],
             ],
         ],
     ]) ?>

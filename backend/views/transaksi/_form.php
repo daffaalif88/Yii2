@@ -64,14 +64,18 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <!-- <?= $form->field($model, 'total_harga')->textInput() ?> -->
-    <!-- <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
-        'clientOptions' => [
-            'alias' => 'numeric',
-            'groupSeparator' => ',',
-            'autoGroup' => true,
-            'removeMaskOnSubmit' => true,
-        ],
-    ]) ?> -->
+    <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
+    'clientOptions' => [
+        'alias' => 'numeric',
+        'groupSeparator' => ',',
+        'autoGroup' => true,
+        'removeMaskOnSubmit' => true,
+    ],
+    'options' => [
+        'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
+    ],
+]) ?>
+
 
     <!-- <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model, 'status')->dropDownList([
