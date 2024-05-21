@@ -71,6 +71,30 @@ $this->title = 'D Hospital';
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Jadwal Praktik Klinik</h1>
 
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                // 'filterModel' => $searchModel,
+                'tableOptions' => ['class' => 'table'],
+                'headerRowOptions' => ['style' => 'display:none'],
+                'summary' => false, 
+                'rowOptions' => ['class' => 'text-light'], 
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    // 'id',
+                    [
+                        'attribute' => 'Hari',
+                        'contentOptions' => ['class' => 'my-cell'],  // Menambahkan kelas my-cell ke kolom Hari
+                    ],
+                    [
+                        'attribute' => 'jam_mulai',
+                        'contentOptions' => ['class' => 'my-cell'],  // Menambahkan kelas my-cell ke kolom jam_mulai
+                    ],
+                    [
+                        'attribute' => 'jam_selesai',
+                        'contentOptions' => ['class' => 'my-cell'],  // Menambahkan kelas my-cell ke kolom jam_selesai
+                    ],
+                ],
+            ]); ?>
 
         </div>
     </div>

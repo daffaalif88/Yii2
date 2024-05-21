@@ -91,6 +91,7 @@ class PasienController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Data Pasien berhasil disimpan.');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -114,6 +115,7 @@ class PasienController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Data Pasien berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

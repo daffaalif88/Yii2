@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -24,11 +25,20 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <!-- tambahan -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tambahkan ini di bagian <head> atau sebelum penutupan tag </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-
-        
+        .my-cell {
+            /* color: white; */
+            /* Mengubah warna teks menjadi putih */
+            font-size: 25px;
+            /* Mengatur ukuran teks */
+            /* Anda bisa mengatur ukuran sesuai kebutuhan, misalnya 20px atau 1.5em */
+        }
     </style>
 
 </head>

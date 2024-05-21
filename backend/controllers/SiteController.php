@@ -91,10 +91,16 @@ class SiteController extends Controller
         $jumlahDokter = Dokter::find()->count();
         $jumlahTransaksi = Transaksi::find()->count();  // Menggunakan Active Record untuk menghitung jumlah pasien
 
+        $searchModel = new JadwalPraktikSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+
         return $this->render('index', [
         'jumlahPasien' => $jumlahPasien,
         'jumlahDokter' => $jumlahDokter,
         'jumlahTransaksi' => $jumlahTransaksi, // Mem-pass jumlah pasien ke view
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
 
     ]);
         // return $this->render('index');

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
@@ -34,5 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'deskripsi_penyakit',
         ],
     ]) ?>
+
+<?php
+if (Yii::$app->session->hasFlash('success')) {
+    $this->registerJs("
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data Penyakit berhasil disimpan.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    ", View::POS_END);
+}
+?>
 
 </div>

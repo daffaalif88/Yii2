@@ -9,6 +9,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
+use yii\web\View;
 
 /** @var yii\web\View $this */
 /** @var backend\models\Transaksi $model */
@@ -287,5 +288,18 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?php ActiveForm::end(); ?>
+
+    <?php
+if (Yii::$app->session->hasFlash('success')) {
+    $this->registerJs("
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data Transaksi berhasil disimpan.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    ", View::POS_END);
+}
+?>
 
 </div>

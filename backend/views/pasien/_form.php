@@ -23,6 +23,7 @@ use yii\widgets\ActiveForm;
         'clientOptions' => [
             'changeYear' => true, // Opsional: Izinkan perubahan tahun
             'changeMonth' => true, // Opsional: Izinkan perubahan bulan
+            'yearRange' => '1900:' . date('Y'),
             // Tambahan opsi lainnya sesuai kebutuhan Anda
         ],
     ]) ?>
