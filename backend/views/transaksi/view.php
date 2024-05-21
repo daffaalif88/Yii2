@@ -14,6 +14,7 @@ use yii\grid\ActionColumn;
 /** @var backend\models\Transaksi $model */
 
 $this->title = $model->id;
+// $this->name = $model->name
 $this->params['breadcrumbs'][] = ['label' => 'Transaksi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -79,32 +80,33 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <hr>
-    <h3>Daftar Obat Yang Dibeli:</h3>
-    <!-- <button class="btn btn-primary">Tambah Obat</button> -->
-    <!-- <a href="../transaksi-obat/create" class="btn btn-primary">Tambah Obat</a> -->
-    <!-- Button trigger modal -->
-    <!-- Modal -->
-    <p class="d-inline-flex gap-1">
-        <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Obat</a>
-    </p>
-    <div class="row">
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <!-- Isi form -->
-                <div class="card card-body">
+    <section id="transaksi-obat">
+        <h3>Daftar Obat Yang Dibeli:</h3>
+        <!-- <button class="btn btn-primary">Tambah Obat</button> -->
+        <!-- <a href="../transaksi-obat/create" class="btn btn-primary">Tambah Obat</a> -->
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Obat</a>
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <!-- Isi form -->
+                    <div class="card card-body">
 
-                    <?php
-                    echo $this->render('@app/views/transaksi-obat/_form', [
+                        <?php
+                    echo $this->render('@app/views/transaksi-obat/_formTransaksi', [
                         'model' => $model2,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
                     ]);
                     
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?= GridView::widget([
+        <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiObat]),
         'columns' => [
             // 'id',
@@ -147,30 +149,33 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
-    <hr>
-    <h3>Daftar Tindakan Yang Dilakukan</h3>
-    <!-- <a href="../transaksi-tindakan/create" class="btn btn-primary">Tambah Obat</a> -->
-    <p class="d-inline-flex gap-1">
-        <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Tindakan</a>
-    </p>
-    <div class="row">
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <!-- Isi form -->
-                <div class="card card-body">
 
-                    <?php
-                    echo $this->render('@app/views/transaksi-tindakan/_form', [
+    </section>
+    <hr>
+    <section id="transaksi-tindakan">
+        <h3>Daftar Tindakan Yang Dilakukan</h3>
+        <!-- <a href="../transaksi-tindakan/create" class="btn btn-primary">Tambah Obat</a> -->
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Tindakan</a>
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    <!-- Isi form -->
+                    <div class="card card-body">
+
+                        <?php
+                    echo $this->render('@app/views/transaksi-tindakan/_formTransaksi', [
                         'model' => $model3,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
                     ]);
                     
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?= GridView::widget([
+        <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiTindakan]),
         'columns' => [
             // 'id',
@@ -206,30 +211,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
-    <hr>
-    <h3>Diagnosa Penyakit</h3>
-    <!-- <a href="../transaksi-penyakit/create" class="btn btn-primary">Tambah Diagnosa</a> -->
-    <p class="d-inline-flex gap-1">
-        <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button"
-            aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Penyakit</a>
-    </p>
-    <div class="row">
-        <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseExample3">
-                <!-- Isi form -->
-                <div class="card card-body">
 
-                    <?php
-                    echo $this->render('@app/views/transaksi-penyakit/_form', [
+    </section>
+
+    <hr>
+
+    <section id="transaksi-penyakit">
+        <h3>Diagnosa Penyakit</h3>
+        <!-- <a href="../transaksi-penyakit/create" class="btn btn-primary">Tambah Diagnosa</a> -->
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-outline-primary" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Tambah Penyakit</a>
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                    <!-- Isi form -->
+                    <div class="card card-body">
+
+                        <?php
+                    echo $this->render('@app/views/transaksi-penyakit/_formTransaksi', [
                         'model' => $model4,  // Pastikan Anda mengirim model yang tepat yang dibutuhkan oleh _form.php
                     ]);
                     
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?= GridView::widget([
+        <?= GridView::widget([
         'dataProvider' => new \yii\data\ArrayDataProvider(['allModels' => $transaksiPenyakit]),
         'columns' => [
             // 'id',
@@ -258,7 +268,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ],
-    ]) ?>
+        ]) ?>
+
+    </section>
+
     <hr>
     <h3>Konfirmasi Status Pembayaran</h3>
     <?php $form = ActiveForm::begin(); ?>

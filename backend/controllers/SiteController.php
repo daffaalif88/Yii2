@@ -3,11 +3,15 @@
 namespace backend\controllers;
 
 use backend\models\Dokter;
+use backend\models\JadwalPraktik;
+use backend\models\JadwalPraktikSearch;
+use backend\models\KategoriObatSearch;
 use backend\models\Pasien;
 use backend\models\Transaksi;
 use common\models\LoginForm;
 use DateTime;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -38,6 +42,22 @@ class SiteController extends Controller
             //         ],
             //     ],
             // ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['laporan'], // Aksi mana yang akan diberlakukan filter
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                        'matchCallback' => function ($rule, $action) {
+                            // Daftar username yang diizinkan
+                            $allowedUsernames = ['admin'];
+                            // Memeriksa apakah username pengguna ada dalam daftar yang diizinkan
+                            return in_array(Yii::$app->user->identity->username, $allowedUsernames);
+                        },
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -75,6 +95,7 @@ class SiteController extends Controller
         'jumlahPasien' => $jumlahPasien,
         'jumlahDokter' => $jumlahDokter,
         'jumlahTransaksi' => $jumlahTransaksi, // Mem-pass jumlah pasien ke view
+
     ]);
         // return $this->render('index');
     }

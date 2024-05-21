@@ -32,7 +32,7 @@ class DokterController extends Controller
                         'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
                         'matchCallback' => function ($rule, $action) {
                             // Daftar username yang diizinkan
-                            $allowedUsernames = ['dokter', 'admin'];
+                            $allowedUsernames = ['admin'];
                             // Memeriksa apakah username pengguna ada dalam daftar yang diizinkan
                             return in_array(Yii::$app->user->identity->username, $allowedUsernames);
                         },

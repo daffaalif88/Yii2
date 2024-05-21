@@ -40,7 +40,7 @@ AppAsset::register($this);
         <?php
         NavBar::begin([
             // 'brandImage' => Yii::$app->request->baseUrl . '/path/to/your/logo.png', 
-            'brandLabel' => '<img src="//hospital.png" class="img-responsive"/> D Hospital',
+            'brandLabel' => Html::encode(Yii::$app->name),
             // 'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             // 'brandImage' => Yii::$app->request->baseUrl . '/backend/assets/hospital.png', 
@@ -77,9 +77,9 @@ AppAsset::register($this);
             ],
             ['label' => 'Laporan', 'url' => ['/site/laporan']],
         ];
-        if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        }
+        // if (Yii::$app->user->isGuest) {
+        //     $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        // }
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
             'items' => $menuItems,

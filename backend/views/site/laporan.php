@@ -7,8 +7,8 @@ $this->title = 'D Hospital';
 <br>
 <div class="p-5 bg-body-tertiary text-light rounded-3" style="background-color: #344C64;">
     <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Laporan Aktifitas Rumah Sakit</h1>
-        <p class="col-md-8 fs-4">Laporan Pendapatan Rumah Sakit Bulan ini: </p>
+        <h1 class="display-5 fw-bold">Laporan Aktifitas Klinik</h1>
+        <p class="col-md-8 fs-4">Laporan Pendapatan Klinik Bulan ini: </p>
         <h1>Rp. <?= Yii::$app->formatter->asInteger($totalHargaBulanIni) ?></h1>
         <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
     </div>
@@ -34,7 +34,7 @@ $this->title = 'D Hospital';
 <div class="p-5 bg-body-tertiary text-dark rounded-3" style="background-color: #E2DFD0;">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Aktifitas Kunjungan Pasien Selama 1 Tahun Terakhir</h1>
-        <!-- <p class="col-md-8 fs-4">Laporan Pendapatan Rumah Sakit Bulan ini: </p> -->
+        <!-- <p class="col-md-8 fs-4">Laporan Pendapatan Klinik Bulan ini: </p> -->
         <canvas id="transactionChart" width="400" height="200"> </canvas>
 <script>
     var ctx = document.getElementById('transactionChart').getContext('2d');

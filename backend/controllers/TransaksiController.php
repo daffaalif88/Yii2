@@ -80,6 +80,7 @@ class TransaksiController extends Controller
     public function actionView($id)
     {
 
+        // Menampilkan data tabel
         $model = $this->findModel($id);
         $transaksiObat = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
@@ -92,15 +93,19 @@ class TransaksiController extends Controller
        
 
         // if ($this->request->isPost) {
+            // Transaksi Obat
             if ($model2->load($this->request->post()) && $model2->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, '#' => 'transaksi-obat']);
             }
+            // Transaksi Tindakan
             if ($model3->load($this->request->post()) && $model3->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, '#' => 'transaksi-tindakan']);
             }
+            // Transaksi Penyakit
             if ($model4->load($this->request->post()) && $model4->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id, '#' => 'transaksi-penyakit']);
             }
+            // Update form lunas
             if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -260,7 +265,7 @@ class TransaksiController extends Controller
                 'subject' => 'Deskripsi Dokumen'
             ],
             'methods' => [
-                'SetHeader' => ['Laporan Transaksi Medis Rumah Sakit Daffa Sentosa||Tanggal: ' . date('d-m-Y')],
+                'SetHeader' => ['Laporan Transaksi Medis Klinik Daffa Sentosa||Tanggal: ' . date('d-m-Y')],
                 'SetFooter' => ['By Muhammad Daffa Nur Alif||{PAGENO}'], // Footer dengan nomor halaman
             ]
             
