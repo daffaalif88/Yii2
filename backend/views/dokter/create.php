@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var backend\models\Dokter $model */
 
 $this->title = 'Tambah Dokter';
-$this->params['breadcrumbs'][] = ['label' => 'Dokters', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Dokter', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="dokter-create">

@@ -32,21 +32,27 @@ class TransaksiController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                        'matchCallback' => function ($rule, $action) {
+                            // Daftar username yang diizinkan
+                            $allowedUsernames = ['admin','dokter'];
+                            // Memeriksa apakah username pengguna ada dalam daftar yang diizinkan
+                            return in_array(Yii::$app->user->identity->username, $allowedUsernames);
+                        },
                     ],
                 ],
             ],
         ];
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
+        // return array_merge(
+        //     parent::behaviors(),
+        //     [
+        //         'verbs' => [
+        //             'class' => VerbFilter::className(),
+        //             'actions' => [
+        //                 'delete' => ['POST'],
+        //             ],
+        //         ],
+        //     ]
+        // );
     }
 
     /**
@@ -93,6 +99,9 @@ class TransaksiController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
             if ($model4->load($this->request->post()) && $model4->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         // } else {

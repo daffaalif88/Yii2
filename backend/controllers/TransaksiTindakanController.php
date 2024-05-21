@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use backend\models\TransaksiTindakan;
 use backend\models\TransaksiTindakanSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,17 +20,35 @@ class TransaksiTindakanController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','create','updates','view'], // Aksi mana yang akan diberlakukan filter
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                        'matchCallback' => function ($rule, $action) {
+                            // Daftar username yang diizinkan
+                            $allowedUsernames = ['admin','dokter'];
+                            // Memeriksa apakah username pengguna ada dalam daftar yang diizinkan
+                            return in_array(Yii::$app->user->identity->username, $allowedUsernames);
+                        },
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
+        // return array_merge(
+        //     parent::behaviors(),
+        //     [
+        //         'verbs' => [
+        //             'class' => VerbFilter::className(),
+        //             'actions' => [
+        //                 'delete' => ['POST'],
+        //             ],
+        //         ],
+        //     ]
+        // );
     }
 
     /**

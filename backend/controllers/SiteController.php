@@ -6,6 +6,7 @@ use backend\models\Dokter;
 use backend\models\Pasien;
 use backend\models\Transaksi;
 use common\models\LoginForm;
+use DateTime;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -86,6 +87,49 @@ class SiteController extends Controller
     public function actionMaster()
     {
         return $this->render('master');
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionLaporan()
+    {
+        $totalHargaBulanIni = Transaksi::find()
+        ->where(['between', 'tanggal_transaksi', date('Y-m-01'), date('Y-m-t')])
+        ->sum('total_harga');
+
+        $jumlahTransaksiBulanIni = Transaksi::find()
+            ->where(['between', 'tanggal_transaksi', date('Y-m-01'), date('Y-m-t')])
+            ->count();
+
+        $jumlahPasien = Pasien::find()->count();
+
+        //Chart
+        $currentMonth = date('Y-m-01');  // Awal bulan ini
+        $data = [];
+        for ($i = 11; $i >= 0; $i--) {
+            $month = (new DateTime($currentMonth))->modify("-{$i} months");
+            $startOfMonth = $month->format('Y-m-01');
+            $endOfMonth = $month->format('Y-m-t');
+
+            $count = Transaksi::find()
+                ->where(['between', 'tanggal_transaksi', $startOfMonth, $endOfMonth])
+                ->count();
+
+            $data[] = [
+                'month' => Yii::$app->formatter->asDate($startOfMonth, 'MMM yyyy'),
+                'count' => $count
+            ];
+        }
+
+        return $this->render('laporan', [
+            'totalHargaBulanIni' => $totalHargaBulanIni,
+            'jumlahTransaksiBulanIni' => $jumlahTransaksiBulanIni,
+            'jumlahPasien' => $jumlahPasien,
+            'transactionData' => $data,
+        ]);
     }
 
     /**

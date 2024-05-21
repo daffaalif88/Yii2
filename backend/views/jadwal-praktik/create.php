@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var backend\models\JadwalPraktik $model */
 
 $this->title = 'Tambah Jadwal Praktik';
-$this->params['breadcrumbs'][] = ['label' => 'Jadwal Praktiks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Jadwal Praktik', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jadwal-praktik-create">

@@ -24,6 +24,12 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        
+    </style>
 
 </head>
 
@@ -34,7 +40,7 @@ AppAsset::register($this);
         <?php
         NavBar::begin([
             // 'brandImage' => Yii::$app->request->baseUrl . '/path/to/your/logo.png', 
-            'brandLabel' => '<img src="//hospital.png" class="img-responsive"/> Daffa WeBDeV',
+            'brandLabel' => '<img src="//hospital.png" class="img-responsive"/> D Hospital',
             // 'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             // 'brandImage' => Yii::$app->request->baseUrl . '/backend/assets/hospital.png', 
@@ -54,6 +60,7 @@ AppAsset::register($this);
                     ['label' => 'Penyakit', 'url' => ['/penyakit/index']],
                     ['label' => 'Kategori Obat', 'url' => ['/kategori-obat/index']],
                     ['label' => 'Obat', 'url' => ['/obat/index']],
+                    ['label' => 'Tindakan', 'url' => ['/tindakan/index']],
                     ['label' => 'Jadwal Praktik', 'url' => ['/jadwal-praktik/index']],
                 ],
             ],
@@ -68,6 +75,7 @@ AppAsset::register($this);
                     ['label' => 'Tindakan Yang Dilakukan', 'url' => ['/transaksi-tindakan/index']],
                 ],
             ],
+            ['label' => 'Laporan', 'url' => ['/site/laporan']],
         ];
         if (Yii::$app->user->isGuest) {
             $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var backend\models\Tindakan $model */
 
 $this->title = 'Tambah Tindakan';
-$this->params['breadcrumbs'][] = ['label' => 'Tindakans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Tindakan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tindakan-create">

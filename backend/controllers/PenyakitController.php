@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use backend\models\Penyakit;
 use backend\models\PenyakitSearch;
+use Codeception\Lib\Connector\Yii2;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,21 +29,27 @@ class PenyakitController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'], // Membutuhkan pengguna yang sudah login (authentikasi)
+                        'matchCallback' => function ($rule, $action) {
+                            // Daftar username yang diizinkan
+                            $allowedUsernames = ['admin'];
+                            // Memeriksa apakah username pengguna ada dalam daftar yang diizinkan
+                            return in_array(Yii::$app->user->identity->username, $allowedUsernames);
+                        },
                     ],
                 ],
             ],
         ];
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
+        // return array_merge(
+        //     parent::behaviors(),
+        //     [
+        //         'verbs' => [
+        //             'class' => VerbFilter::className(),
+        //             'actions' => [
+        //                 'delete' => ['POST'],
+        //             ],
+        //         ],
+        //     ]
+        // );
     }
 
     /**

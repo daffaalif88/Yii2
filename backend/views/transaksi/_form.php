@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
             \backend\models\Pasien::find()->all(),
             'id',
             function ($pasien) {
-                return $pasien->id . ' - ' . $pasien->nama_pasien;
+                return $pasien->id.' - '.$pasien->nama_pasien.'_'.$pasien->nik.'_'.$pasien->tanggal_lahir.'_'.$pasien->jenis_kelamin;
             }
         ),
         ['prompt' => 'Pilih Pasien']
@@ -64,7 +64,7 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <!-- <?= $form->field($model, 'total_harga')->textInput() ?> -->
-    <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
+    <!-- <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
     'clientOptions' => [
         'alias' => 'numeric',
         'groupSeparator' => ',',
@@ -74,14 +74,20 @@ use yii\widgets\ActiveForm;
     'options' => [
         'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
     ],
-]) ?>
+]) ?> -->
+    <?= $form->field($model, 'total_harga')->hiddenInput([
+    'value' => $model->total_harga ? $model->total_harga : 0,
+])->label(false) ?>
 
 
     <!-- <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> -->
-    <?= $form->field($model, 'status')->dropDownList([
+    <!-- <?= $form->field($model, 'status')->dropDownList([
         'belum lunas' => 'Belum Lunas',
         'lunas' => 'Lunas',
-    ]) ?>
+    ]) ?> -->
+    <?= $form->field($model, 'status')->hiddenInput([
+    'value' => $model->status ? $model->status : 'belum lunas',
+])->label(false) ?>
     <br>
 
     <div class="form-group">

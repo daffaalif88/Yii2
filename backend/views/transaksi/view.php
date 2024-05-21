@@ -3,6 +3,7 @@
 use app\models\TransaksiPenyakit;
 use backend\models\TransaksiObat;
 use backend\models\TransaksiTindakan;
+use yii\bootstrap5\ActiveForm;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -13,7 +14,7 @@ use yii\grid\ActionColumn;
 /** @var backend\models\Transaksi $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Transaksis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Transaksi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -258,5 +259,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
+    <hr>
+    <h3>Konfirmasi Status Pembayaran</h3>
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'status')->dropDownList([
+        'belum lunas' => 'Belum Lunas',
+        'lunas' => 'Lunas',
+    ]) ?>
+    <!-- <br> -->
+
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>
