@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
     <br>
-    <h1>Detail Transaksi</h1>
+    <h1>Detail Transaksi:</h1>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -78,6 +78,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'status',
+        ],
+    ]) ?>
+    <hr>
+    <h3>Data Pasien</h3>
+    <?= DetailView::widget([
+        'model' => $pasien,
+        'attributes' => [
+            'id',
+            'nik',
+            'nama_pasien',
+            'tanggal_lahir',
+            'jenis_kelamin',
         ],
     ]) ?>
     <hr>

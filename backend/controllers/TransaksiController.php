@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use app\models\TransaksiPenyakit;
+use backend\models\Pasien;
 use backend\models\Transaksi;
 use backend\models\TransaksiObat;
 use backend\models\TransaksiSearch;
@@ -85,6 +86,7 @@ class TransaksiController extends Controller
         $transaksiObat = TransaksiObat::find()->where(['id_transaksi' => $id])->all();
         $transaksiTindakan = TransaksiTindakan::find()->where(['id_transaksi' => $id])->all();
         $transaksiPenyakit = TransaksiPenyakit::find()->where(['id_transaksi' => $id])->all();
+        $pasien = $model->pasien;
         
         // untuk create pada tabel
         $model2 = new TransaksiObat();
@@ -122,8 +124,14 @@ class TransaksiController extends Controller
             'transaksiObat' => $transaksiObat,
             'transaksiTindakan' => $transaksiTindakan,
             'transaksiPenyakit' => $transaksiPenyakit,
+            'pasien' => $pasien,
             // 'selectedTransaksiId' => $id,
         ]);
+    }
+
+    public function getPasien()
+    {
+        return $this->hasOne(Pasien::className(), ['id' => 'pasien_id']);
     }
 
     /**

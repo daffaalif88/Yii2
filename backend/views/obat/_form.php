@@ -1,5 +1,9 @@
 <?php
 
+use backend\models\KategoriObat;
+use kartik\select2\Select2;
+use kartik\select2\Select2Asset;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,9 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nama_obat')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_kategori')->dropDownList(
-        \yii\helpers\ArrayHelper::map(
-            \backend\models\KategoriObat::find()->all(),
+    <?= $form->field($model, 'id_kategori')->dropDownList(ArrayHelper::map(KategoriObat::find()->all(),
             'id',
             function ($kategori) {
                 return $kategori->id . ' - ' . $kategori->nama_kategori;
@@ -35,6 +37,9 @@ use yii\widgets\ActiveForm;
             'removeMaskOnSubmit' => true,
         ],
     ]) ?>
+
+
+
 
     <!-- <?= $form->field($model, 'stok_obat')->textInput() ?> -->
     <?= $form->field($model, 'stok_obat')->widget(\yii\widgets\MaskedInput::className(), [

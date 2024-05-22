@@ -9,5 +9,17 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => '@vendor/twbs/bootstrap/dist',
+                    'css' => ['css/bootstrap.min.css'],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'sourcePath' => '@vendor/twbs/bootstrap/dist',
+                    'js' => ['js/bootstrap.bundle.min.js'],
+                ],
+            ],
+        ],
     ],
 ];

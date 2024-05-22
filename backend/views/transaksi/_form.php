@@ -65,19 +65,19 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'total_harga')->textInput() ?> -->
     <!-- <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
-    'clientOptions' => [
-        'alias' => 'numeric',
-        'groupSeparator' => ',',
-        'autoGroup' => true,
-        'removeMaskOnSubmit' => true,
-    ],
-    'options' => [
-        'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
-    ],
-]) ?> -->
+        'clientOptions' => [
+            'alias' => 'numeric',
+            'groupSeparator' => ',',
+            'autoGroup' => true,
+            'removeMaskOnSubmit' => true,
+        ],
+        'options' => [
+            'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
+        ],
+    ]) ?> -->
     <?= $form->field($model, 'total_harga')->hiddenInput([
-    'value' => $model->total_harga ? $model->total_harga : 0,
-])->label(false) ?>
+        'value' => $model->total_harga ? $model->total_harga : 0,
+    ])->label(false) ?>
 
 
     <!-- <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> -->
@@ -86,8 +86,8 @@ use yii\widgets\ActiveForm;
         'lunas' => 'Lunas',
     ]) ?> -->
     <?= $form->field($model, 'status')->hiddenInput([
-    'value' => $model->status ? $model->status : 'belum lunas',
-])->label(false) ?>
+        'value' => $model->status ? $model->status : 'belum lunas',
+    ])->label(false) ?>
     <br>
 
     <div class="form-group">
