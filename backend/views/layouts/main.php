@@ -41,6 +41,9 @@ AppAsset::register($this);
         }
     </style>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
+
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -124,6 +127,8 @@ AppAsset::register($this);
             <p class="float-end"><?= Yii::powered() ?></p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <?php $this->endBody() ?>
 </body>

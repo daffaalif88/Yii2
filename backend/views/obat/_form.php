@@ -27,6 +27,12 @@ use yii\widgets\ActiveForm;
         ['prompt' => 'Pilih Kategori']
     ) ?>
 
+    <select class="js-example-basic-single" name="state">
+        <option value="AL">Alabama</option>
+        ...
+        <option value="WY">Wyoming</option>
+    </select>
+
     <!-- <?= $form->field($model, 'harga_obat')->textInput() ?> -->
     <?= $form->field($model, 'harga_obat')->widget(\yii\widgets\MaskedInput::className(), [
         'clientOptions' => [
