@@ -15,15 +15,15 @@ use yii\widgets\ActiveForm;
     <!-- <?= $form->field($model, 'id_transaksi')->textInput() ?> -->
     <?= $form->field($model, 'id_transaksi')->hiddenInput(['value' => $this->title])->label(false) ?>
     <!-- <?= $form->field($model, 'id_transaksi')->dropDownList(
-        \yii\helpers\ArrayHelper::map(
-            \backend\models\Transaksi::find()->all(),
-            'id',
-            function ($transaksi) {
-                return $transaksi->id . ' - ' .$transaksi->id_pasien. ' - ' . $transaksi->pasien->nama_pasien;
-            }
-        ),
-        ['prompt' => 'Pilih Pasien']
-    ) ?> -->
+                \yii\helpers\ArrayHelper::map(
+                    \backend\models\Transaksi::find()->all(),
+                    'id',
+                    function ($transaksi) {
+                        return $transaksi->id . ' - ' . $transaksi->id_pasien . ' - ' . $transaksi->pasien->nama_pasien;
+                    }
+                ),
+                ['prompt' => 'Pilih Pasien']
+            ) ?> -->
 
     <!-- <?= $form->field($model, 'id_tindakan')->textInput() ?> -->
     <?= $form->field($model, 'id_tindakan')->dropDownList(
@@ -31,10 +31,11 @@ use yii\widgets\ActiveForm;
             \backend\models\Tindakan::find()->all(),
             'id',
             function ($tindakan) {
-                return $tindakan->nama_tindakan.' - Rp.'.number_format($tindakan->tarif, 0, '', '.');
+                return $tindakan->nama_tindakan . ' - Rp.' . number_format($tindakan->tarif, 0, '', '.');
             }
         ),
-        ['prompt' => 'Pilih Tindakan']);
+        ['id' => 'id_tindakan', 'prompt' => 'Pilih Tindakan']
+    );
     ?>
 
     <br>
@@ -46,3 +47,12 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerJs("
+    $('#id_tindakan').select2({
+        placeholder: 'Pilih Obat',
+        allowClear: true
+    });
+");
+?>

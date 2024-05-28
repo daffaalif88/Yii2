@@ -22,10 +22,10 @@ use yii\widgets\ActiveForm;
             \backend\models\Pasien::find()->all(),
             'id',
             function ($pasien) {
-                return $pasien->id.' - '.$pasien->nama_pasien.'_'.$pasien->nik.'_'.$pasien->tanggal_lahir.'_'.$pasien->jenis_kelamin;
+                return $pasien->id . ' - ' . $pasien->nama_pasien . '_' . $pasien->nik . '_' . $pasien->tanggal_lahir . '_' . $pasien->jenis_kelamin;
             }
         ),
-        ['prompt' => 'Pilih Pasien']
+        ['id' => 'id_pasien', 'prompt' => 'Pilih Pasien']
     ) ?>
 
     <!-- <?= $form->field($model, 'id_dokter')->textInput() ?> -->
@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
                 return $dokter->id . ' - ' . $dokter->nama_dokter;
             }
         ),
-        ['prompt' => 'Pilih dokter']
+        ['id' => 'id_dokter', 'prompt' => 'Pilih dokter']
     ) ?>
 
     <!-- <?= $form->field($model, 'id_jadwal_praktik')->textInput() ?> masih Bug-->
@@ -49,7 +49,7 @@ use yii\widgets\ActiveForm;
                 return $jadwal_praktik->id . ' - ' . $jadwal_praktik->Hari;
             }
         ),
-        ['prompt' => 'Pilih Pasien']
+        ['id' => 'id_jadwal_praktik', 'prompt' => 'Pilih Jadwal']
     ) ?>
 
     <!-- <?= $form->field($model, 'tanggal_transaksi')->textInput() ?> -->
@@ -65,16 +65,16 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'total_harga')->textInput() ?> -->
     <!-- <?= $form->field($model, 'total_harga')->widget(\yii\widgets\MaskedInput::className(), [
-        'clientOptions' => [
-            'alias' => 'numeric',
-            'groupSeparator' => ',',
-            'autoGroup' => true,
-            'removeMaskOnSubmit' => true,
-        ],
-        'options' => [
-            'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
-        ],
-    ]) ?> -->
+                'clientOptions' => [
+                    'alias' => 'numeric',
+                    'groupSeparator' => ',',
+                    'autoGroup' => true,
+                    'removeMaskOnSubmit' => true,
+                ],
+                'options' => [
+                    'value' => $model->total_harga ? $model->total_harga : 0, // Menetapkan nilai default ke 0 jika total_harga belum diatur
+                ],
+            ]) ?> -->
     <?= $form->field($model, 'total_harga')->hiddenInput([
         'value' => $model->total_harga ? $model->total_harga : 0,
     ])->label(false) ?>
@@ -82,9 +82,9 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?> -->
     <!-- <?= $form->field($model, 'status')->dropDownList([
-        'belum lunas' => 'Belum Lunas',
-        'lunas' => 'Lunas',
-    ]) ?> -->
+                'belum lunas' => 'Belum Lunas',
+                'lunas' => 'Lunas',
+            ]) ?> -->
     <?= $form->field($model, 'status')->hiddenInput([
         'value' => $model->status ? $model->status : 'belum lunas',
     ])->label(false) ?>
@@ -97,3 +97,20 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerJs("
+    $('#id_pasien').select2({
+        placeholder: 'Pilih Pasien',
+        allowClear: true
+    });
+    $('#id_dokter').select2({
+        placeholder: 'Pilih Dokter',
+        allowClear: true
+    });
+    $('#id_jadwal_praktik ').select2({
+        placeholder: 'Pilih Jadwal Praktik',
+        allowClear: true
+    });
+");
+?>

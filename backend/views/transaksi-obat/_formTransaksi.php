@@ -16,15 +16,15 @@ use yii\widgets\ActiveForm;
     <!-- <?= $form->field($model, 'id_transaksi')->textInput(['value' => $this->title, 'readonly' => true]) ?> -->
     <?= $form->field($model, 'id_transaksi')->hiddenInput(['value' => $this->title])->label(false) ?>
     <!-- <?= $form->field($model, 'id_transaksi')->dropDownList(
-        \yii\helpers\ArrayHelper::map(
-            \backend\models\Transaksi::find()->all(),
-            'id',
-            function ($transaksi) {
-                return $transaksi->id . ' - ' .$transaksi->id_pasien. ' - ' . $transaksi->pasien->nama_pasien;
-            }
-        ),
-        ['prompt' => 'Pilih Transaksi Pasien']
-    ) ?> -->
+                \yii\helpers\ArrayHelper::map(
+                    \backend\models\Transaksi::find()->all(),
+                    'id',
+                    function ($transaksi) {
+                        return $transaksi->id . ' - ' . $transaksi->id_pasien . ' - ' . $transaksi->pasien->nama_pasien;
+                    }
+                ),
+                ['prompt' => 'Pilih Transaksi Pasien']
+            ) ?> -->
 
 
     <!-- <?= $form->field($model, 'id_obat')->textInput() ?> -->
@@ -33,13 +33,12 @@ use yii\widgets\ActiveForm;
             \backend\models\Obat::find()->all(),
             'id',
             function ($obat) {
-                return $obat->nama_obat.' - Rp.'.number_format($obat->harga_obat, 0, '', '.');
+                return $obat->nama_obat . ' - Rp.' . number_format($obat->harga_obat, 0, '', '.');
             }
         ),
-        ['prompt' => 'Pilih Obat']);
+        ['id' => 'id_obat', 'class' => 'form-control', 'prompt' => 'Pilih Obat']
+    );
     ?>
-
-    
 
     <!-- <?= $form->field($model, 'jumlah')->textInput() ?> -->
     <?= $form->field($model, 'jumlah')->widget(\yii\widgets\MaskedInput::className(), [
@@ -59,3 +58,12 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerJs("
+    $('#id_obat').select2({
+        placeholder: 'Pilih Obat',
+        allowClear: true
+    });
+");
+?>

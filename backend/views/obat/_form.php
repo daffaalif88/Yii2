@@ -18,20 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nama_obat')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_kategori')->dropDownList(ArrayHelper::map(KategoriObat::find()->all(),
-            'id',
-            function ($kategori) {
-                return $kategori->id . ' - ' . $kategori->nama_kategori;
-            }
-        ),
-        ['prompt' => 'Pilih Kategori']
+
+
+    <?= $form->field($model, 'id_kategori')->dropDownList(
+        ArrayHelper::map(KategoriObat::find()->all(), 'id', function ($kategori) {
+            return $kategori->id . ' - ' . $kategori->nama_kategori;
+        }),
+        ['id' => 'id_kategori', 'prompt' => 'Pilih Kategori']
     ) ?>
 
-    <select class="js-example-basic-single" name="state">
-        <option value="AL">Alabama</option>
-        ...
-        <option value="WY">Wyoming</option>
-    </select>
 
     <!-- <?= $form->field($model, 'harga_obat')->textInput() ?> -->
     <?= $form->field($model, 'harga_obat')->widget(\yii\widgets\MaskedInput::className(), [
@@ -62,3 +57,12 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$this->registerJs("
+    $('#id_kategori').select2({
+        placeholder: 'Pilih Kategori',
+        allowClear: true
+    });
+");
+?>
