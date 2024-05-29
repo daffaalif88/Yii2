@@ -5,7 +5,7 @@
 $this->title = 'D Hospital';
 ?>
 <br>
-<div class="p-5 bg-body-tertiary text-light rounded-3" style="background-color: #344C64;">
+<div class="p-5 text-light rounded-3" style="background-color: #344C64;">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Laporan Aktifitas Klinik</h1>
         <p class="col-md-8 fs-4">Laporan Pendapatan Klinik Bulan ini: </p>
@@ -23,7 +23,7 @@ $this->title = 'D Hospital';
         </div>
     </div>
     <div class="col-md-6">
-        <div class="h-100 p-5 bg-body-tertiary text-light border rounded-3" style="background-color:#57A6A1">
+        <div class="h-100 p-5 text-light border rounded-3" style="background-color:#57A6A1">
             <h2>Jumlah Pasien yang pernah berkunjung</h2>
             <h1><?= $jumlahPasien?></h1>
             <!-- <button class="btn btn-outline-light" type="button">Example button</button> -->
@@ -31,7 +31,7 @@ $this->title = 'D Hospital';
     </div>
 </div>
 <br>
-<div class="p-5 bg-body-tertiary text-dark rounded-3" style="background-color: #E2DFD0;">
+<div class="p-5 text-dark rounded-3" style="background-color: #E2DFD0;">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Aktifitas Kunjungan Pasien Selama 1 Tahun Terakhir</h1>
         <!-- <p class="col-md-8 fs-4">Laporan Pendapatan Klinik Bulan ini: </p> -->

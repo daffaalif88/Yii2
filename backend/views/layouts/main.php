@@ -43,11 +43,7 @@ AppAsset::register($this);
 
     <style>
         .my-cell {
-            /* color: white; */
-            /* Mengubah warna teks menjadi putih */
             font-size: 25px;
-            /* Mengatur ukuran teks */
-            /* Anda bisa mengatur ukuran sesuai kebutuhan, misalnya 20px atau 1.5em */
         }
     </style>
 

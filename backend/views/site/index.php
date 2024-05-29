@@ -36,9 +36,9 @@ $this->title = 'D Hospital';
 
     <div class="body-content">
         <!-- <div class="container"> -->
-        <div class="row" style="color:whitesmoke">
+        <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card" style="color:antiquewhite">
                     <div class="card-body rounded-3" style="background-color:#0A2647;">
                         <h5>Jumlah Pasien</h5>
                         <h1><?= $jumlahPasien ?></h1>
@@ -46,7 +46,7 @@ $this->title = 'D Hospital';
                 </div>
             </div>
             <div class="col">
-                <div class="card">
+                <div class="card" style="color:antiquewhite">
                     <div class="card-body rounded-3" style="background-color: #144272">
                         <h5>Jumlah Dokter</h5>
                         <h1><?= $jumlahDokter ?></h1>
@@ -54,7 +54,7 @@ $this->title = 'D Hospital';
                 </div>
             </div>
             <div class="col">
-                <div class="card">
+                <div class="card" style="color:antiquewhite">
                     <div class="card-body rounded-3" style="background-color:#205295;">
                         <h5>Jumlah Transaksi</h5>
                         <h1><?= $jumlahTransaksi ?></h1>
@@ -67,7 +67,7 @@ $this->title = 'D Hospital';
         <!-- <h1>Jadwal Praktik</h1> -->
     </div>
 
-    <div class="p-5 bg-body-tertiary text-light rounded-3" style="background-color: #344C64;">
+    <div class="p-5 text-light rounded-3" style="background-color: #344C64;">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Jadwal Praktik Klinik</h1>
 
